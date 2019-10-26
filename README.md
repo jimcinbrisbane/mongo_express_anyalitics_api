@@ -18,7 +18,7 @@ localhost:3000/company/acquisitions/<companyname>
 localhost:3000/company/investments/<companyname>
 localhost:3000/company/products/<companyname>
 
-Or perform data anylitics in company.js and route it yourself
+Or perform data anylitics in company.js and route it yourself!
 
 
 
