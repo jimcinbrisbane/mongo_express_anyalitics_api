@@ -15,5 +15,6 @@ app.use(express.json())
 const companyRouter = require('./routes/company')
 app.use('/company', companyRouter)
 app.use('/data', express.static('data'))
+app.use(express.static('public'))
 app.listen(3000,() => console.log("server started at localhost:3000"))
 

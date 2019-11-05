@@ -154,32 +154,30 @@ router.get('/acquisition/:name',(req, res) => {
       });
 })
 router.get('/providerships/:name',(req, res) => {
-  MongoClient.connect(url,{ useUnifiedTopology: true }, function(err, client) {
-      // Create a collection we want to drop later
-      const db = client.db("a");
+  try { MongoClient.connect(url,{ useUnifiedTopology: true }, function(err, client) {
+      const db = client.db("a")
       const col = db.collection('b')
-      // Show that duplicate records got dropped
       var data = col.findOne({name: req.params.name}, function(err, result) {
-      console.log(result)
-      res.send(result.providerships)
-
-
-        if (err) throw err;
-        
-        console.log(result);
-        
-
+        if (result === null) {
+          res.send({error: "Input Error"})
+        } else {
+          res.send(result.providerships)
+        }
         client.close();
         return result
-        
-      });
-
-
-
-      //console.log("collection", col);
+         })
+      })
     
-      });
+  } catch (err) {
+    next(err)
+    res.send(err)
+
+
+  }
 })
+
+    
+    
 
 
 
