@@ -1,22 +1,22 @@
 import React, { Component } from 'react';import logo from './logo.svg';
 import './App.css';
-import Contacts from './components/contacts';
+import Companies from './components/company';
 class App extends Component {
 
   state = {
-    contacts: []
+    companies: []
   }
   componentDidMount() {
-    fetch('http://jsonplaceholder.typicode.com/users')
+    fetch('http://192.168.1.129:3000/company/funding_rounds/Digg')
     .then(res => res.json())
     .then((data) => {
-      this.setState({ contacts: data })
+      this.setState({ companies: data })
     })
     .catch(console.log)
   }
   render() {
     return (
-      <Contacts contacts={this.state.contacts} />
+      <Companies companies={this.state.companies} />
     )
   }
 }
